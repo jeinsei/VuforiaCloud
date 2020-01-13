@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using LitJson;
-using System.IO;
+//using LitJson;
+//using System.IO;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using UnityEngine.Networking;
@@ -31,43 +31,21 @@ public class JsonManager : MonoBehaviour
     public static string model3dJson; // Variable pour stocker le lien URL du model 3D via le Json
     public static string nameOfAssetBundle; // Variable public pour définir par un champ texte le nom du bundle de l'objet 3D
 
-   
     #endregion
 
-    //DECLARATION DES EQUIVALENCES PRESENTES DANS LE JSON EN C#//
-    [System.Serializable]
-    public class jsonData
-    {
-        public string textURL;
-        public string buttonURL;
-        public string imageURL;
-        public string videoURL;
-        public string audioURL;
-        public string modelURL;
-        public string bundleName;
-
-    }
-
-
-  
     //LANCEMENT DE LA FONCTION UDPATE A CHAQUE FRAME//
     private void Update()
     {
         Debug.Log("je suis dans Update");
-        pathVuforiaMetaData = SimpleCloudHandler.metaData; // récupération du chemin Json via le flashage de l'image via le script SimpleCloudHandler
+        pathVuforiaMetaData = JsonVuforiaCloudHandler.metaData; // récupération du chemin Json via le flashage de l'image via le script SimpleCloudHandler
         pathJsonData = pathVuforiaMetaData; // le chemin path devient celui détenu dans l'image du vuforia Cloud
-        StartCoroutine(linkDataJson()); // Lancement de la coroutine pour lier les data du lien du Json récupéré
+        StartCoroutine(LinkDataJson()); // Lancement de la coroutine pour lier les data du lien du Json récupéré
        
     }
 
-  
+    #region COROUTINES
 
-    #region LANCEMENT DE LA COROUTINE POUR MAPPER LES INFORMATIONS DU JSON AU C#
-
-
-
-
-    IEnumerator linkDataJson()
+   public IEnumerator LinkDataJson()
 
     {
   
@@ -75,39 +53,22 @@ public class JsonManager : MonoBehaviour
 
            WWW wwwPathJson = new WWW(pathJsonData); // Lecture du lien URL via pathJsonData contenu dans la metaData du marqueur
            yield return wwwPathJson;
-           jsonData JsonBridge = JsonUtility.FromJson<jsonData>(wwwPathJson.text); // Association du dictionnaire "JsonBridge" avec le Json afin de faire la passerelle entre le C# et le Json
-
+           
            if (wwwPathJson.error == null) // Vérification du passage des données
            {
                Debug.Log("données parsées");
-           }
+                WrapData(wwwPathJson.text);
+            }
            else
            {
-               Debug.Log("Echec de parsage des données");
+              Debug.Log("Echec de parsage des données");
+
 
            } 
-             
-
-        //COMMUNICATION ENTRE LES VALEURS DU JSON ET LES VALEURS STRING EN C#//
-        textUrlJson = (JsonBridge.textURL); 
-          buttonUrlJson = (JsonBridge.buttonURL);
-          imageUrlJson = (JsonBridge.imageURL); 
-          videoUrlJson = (JsonBridge.videoURL); 
-          audioClipJson = (JsonBridge.audioURL); 
-          model3dJson = (JsonBridge.modelURL); 
-          nameOfAssetBundle = "suite";
-
-
 
     }
 
-
-    #endregion
-
-   #region COROUTINES
-
-
-   IEnumerator ReadAudio()
+   public IEnumerator ReadAudio()
    {
        Debug.Log("je suis dans la coroutine GetAudioClip");
        objetAudio = GetComponent<AudioSource>();
@@ -131,14 +92,14 @@ public class JsonManager : MonoBehaviour
 
    }
 
-   IEnumerator ReadImage()
+   public IEnumerator ReadImage()
    {
        WWW wwwImage = new WWW(imageUrlJson); // Lecture du lien URL pour récupération de la texture de l'image
        yield return wwwImage;
        objetImage.GetComponent<RawImage>().texture = wwwImage.texture; // application de l'image récupérer en URL sur RAWimage
    }
 
-   IEnumerator ReadVideo()
+   public IEnumerator ReadVideo()
    {
  
         objetVideo.GetComponent<VideoPlayer>().url = videoUrlJson; // application de l'url de la video sur le video player
@@ -150,7 +111,20 @@ public class JsonManager : MonoBehaviour
 
    #region PUBLIC VARIABLES
 
-   public void LoadText()
+    public void WrapData (string _www)
+    {
+        jsonDataClass JsonBridge = JsonUtility.FromJson<jsonDataClass>(_www); // Association du dictionnaire "JsonBridge" avec le Json afin de faire la passerelle entre le C# et le Json
+        textUrlJson = (JsonBridge.textURL);
+        buttonUrlJson = (JsonBridge.buttonURL);
+        imageUrlJson = (JsonBridge.imageURL);
+        videoUrlJson = (JsonBridge.videoURL);
+        audioClipJson = (JsonBridge.audioURL);
+        model3dJson = (JsonBridge.modelURL);
+        nameOfAssetBundle = "suite";
+
+    }
+
+    public void LoadText()
    {
        objetTexte.text = (textUrlJson); 
    }
@@ -174,6 +148,6 @@ public class JsonManager : MonoBehaviour
    {
        StartCoroutine(ReadVideo());
    }
-
+   
     #endregion
 }
