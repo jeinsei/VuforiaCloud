@@ -2,20 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// FONCTIONS PERMETTANT DE LIES LES INTERACTIONS AUX BOUTONS
 public class JsonInteractions : MonoBehaviour
 {
     public JsonManager _jsonManager;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void LoadText()
     {

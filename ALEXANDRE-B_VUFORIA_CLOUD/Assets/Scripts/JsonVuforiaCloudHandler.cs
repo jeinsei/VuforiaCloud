@@ -123,6 +123,5 @@ public class JsonVuforiaCloudHandler : MonoBehaviour,IObjectRecoEventHandler
         throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
    
 }

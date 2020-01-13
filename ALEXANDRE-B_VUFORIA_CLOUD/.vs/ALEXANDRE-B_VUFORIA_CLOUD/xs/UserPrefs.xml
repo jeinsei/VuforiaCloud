@@ -1,7 +1,8 @@
 ﻿<Properties StartupConfiguration="{99ECB7C7-63B7-1767-CAD0-73B02A832839}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/JsonManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Plugins/Android/AndroidManifest.xml">
     <Files>
-      <File FileName="Assets/Scripts/JsonManager.cs" Line="9" Column="14" />
+      <File FileName="Assets/Scripts/MediaPlayerCtrl.cs" Line="740" Column="1" />
+      <File FileName="Assets/Plugins/Android/AndroidManifest.xml" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

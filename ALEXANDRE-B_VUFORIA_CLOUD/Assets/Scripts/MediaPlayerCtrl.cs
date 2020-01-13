@@ -736,7 +736,9 @@ public class MediaPlayerCtrl : MonoBehaviour
 
 	}
 
-	public void DeleteVideoTexture()
+	
+
+    public void DeleteVideoTexture()
 	{
 		if (m_VideoTextureDummy != null)
 		{
