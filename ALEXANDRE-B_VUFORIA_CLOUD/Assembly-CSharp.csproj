@@ -63,6 +63,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_SCRIPTS_JSON\ARCameraFocusController.cs" />
+    <Compile Include="Assets\_SCRIPTS_JSON\JsonDataClass.cs" />
+    <Compile Include="Assets\_SCRIPTS_JSON\JsonInteractions.cs" />
+    <Compile Include="Assets\_SCRIPTS_JSON\JsonManager.cs" />
+    <Compile Include="Assets\_SCRIPTS_JSON\JsonVuforiaCloudHandler.cs" />
+    <Compile Include="Assets\_SCRIPTS_JSON\MediaPlayerCtrl.cs" />
     <Compile Include="Assets\EasyMovieTexture\FFmpeg.AutoGen\FFmpeg.avcodec.g.cs" />
     <Compile Include="Assets\EasyMovieTexture\FFmpeg.AutoGen\FFmpeg.avdevice.g.cs" />
     <Compile Include="Assets\EasyMovieTexture\FFmpeg.AutoGen\FFmpeg.avfilter.g.cs" />
@@ -77,11 +83,6 @@
     <Compile Include="Assets\EasyMovieTexture\Scripts\MediaPlayerFullScreenCtrl.cs" />
     <Compile Include="Assets\EasyMovieTexture\Scripts\SeekBarCtrl.cs" />
     <Compile Include="Assets\EasyMovieTexture\Scripts\SphereMirror.cs" />
-    <Compile Include="Assets\Scripts\JsonDataClass.cs" />
-    <Compile Include="Assets\Scripts\JsonInteractions.cs" />
-    <Compile Include="Assets\Scripts\JsonManager.cs" />
-    <Compile Include="Assets\Scripts\JsonVuforiaCloudHandler.cs" />
-    <Compile Include="Assets\Scripts\MediaPlayerCtrl.cs" />
     <Compile Include="Assets\UnityLitJson\Extensions.cs" />
     <Compile Include="Assets\UnityLitJson\IJsonWrapper.cs" />
     <Compile Include="Assets\UnityLitJson\JsonAttribute.cs" />
