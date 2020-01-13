@@ -38,13 +38,13 @@ public class JsonManager : MonoBehaviour
         pathVuforiaMetaData = JsonVuforiaCloudHandler.metaData; // récupération du chemin Json via le flashage de l'image via le script SimpleCloudHandler
         pathJsonData = pathVuforiaMetaData; // le chemin path devient celui détenu dans l'image du vuforia Cloud
         StartCoroutine(LinkDataJson(pathJsonData)); // Lancement de la coroutine pour lier les data du lien du Json récupéré
-       
+      
     }
 
     #region COROUTINES
 
     // COROUTINE PRINCIPALE POUR LIRE LE JSON
-   public IEnumerator LinkDataJson(string pathURL)
+    public IEnumerator LinkDataJson(string pathURL)
 
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(pathJsonData))
@@ -60,8 +60,9 @@ public class JsonManager : MonoBehaviour
             {
                 Debug.Log(":Validation mapping json coroutine:");
                 WrapData(webRequest.downloadHandler.text);
+                yield break;
             }
-
+         
         }
 
     }

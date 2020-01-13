@@ -1,4 +1,0 @@
-#Mon Jan 13 09:49:09 CET 2020
-base.0=/Users/noe/Documents/_PROJETS_UNITY/VUFORIA_CLOUD_MAIN/ALEXANDRE-B_VUFORIA_CLOUD/Temp/gradleOut/build/intermediates/transforms/dexMerger/release/0
-path.0=classes.dex
-renamed.0=classes.dex
