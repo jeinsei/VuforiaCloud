@@ -8,6 +8,10 @@ Confidential and Proprietary - Protected under copyright and other laws.
 
 using UnityEngine;
 using Vuforia;
+using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+
 
 /// <summary>
 /// A custom handler that implements the ITrackableEventHandler interface.
@@ -17,6 +21,8 @@ using Vuforia;
 /// </summary>
 public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
 {
+
+
     #region PROTECTED_MEMBER_VARIABLES
 
     protected TrackableBehaviour mTrackableBehaviour;
@@ -32,6 +38,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
         if (mTrackableBehaviour)
             mTrackableBehaviour.RegisterTrackableEventHandler(this);
+
     }
 
     protected virtual void OnDestroy()
@@ -87,9 +94,11 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
     {
         if (mTrackableBehaviour)
         {
+            Debug.Log("FOUND");
             var rendererComponents = mTrackableBehaviour.GetComponentsInChildren<Renderer>(true);
             var colliderComponents = mTrackableBehaviour.GetComponentsInChildren<Collider>(true);
             var canvasComponents = mTrackableBehaviour.GetComponentsInChildren<Canvas>(true);
+       
 
             // Enable rendering:
             foreach (var component in rendererComponents)
@@ -102,6 +111,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             // Enable canvas':
             foreach (var component in canvasComponents)
                 component.enabled = true;
+           
         }
     }
 
@@ -110,6 +120,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
     {
         if (mTrackableBehaviour)
         {
+            Debug.Log("LOST");
             var rendererComponents = mTrackableBehaviour.GetComponentsInChildren<Renderer>(true);
             var colliderComponents = mTrackableBehaviour.GetComponentsInChildren<Collider>(true);
             var canvasComponents = mTrackableBehaviour.GetComponentsInChildren<Canvas>(true);

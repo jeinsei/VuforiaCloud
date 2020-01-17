@@ -6,6 +6,7 @@ using UnityEngine.Video;
 using UnityEngine.Networking;
 using System;
 
+
 public class JsonManager : MonoBehaviour
 {
     #region VARIABLES
@@ -60,6 +61,8 @@ public class JsonManager : MonoBehaviour
             {
                 Debug.Log(":Validation mapping json coroutine:");
                 WrapData(webRequest.downloadHandler.text);
+                StartCoroutine(ReadImage());
+       
                 yield break;
             }
          
@@ -134,6 +137,8 @@ public class JsonManager : MonoBehaviour
         audioClipJson = (JsonBridge.audioURL);
         model3dJson = (JsonBridge.modelURL);
         nameOfAssetBundle = "suite";
+
+        objetTexte.text = textUrlJson;
 
     }
 
