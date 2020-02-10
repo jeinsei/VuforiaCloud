@@ -5,6 +5,7 @@ using UnityEngine;
 //DECLARATION DES EQUIVALENCES PRESENTES DANS LE JSON EN C#//
 public class jsonDataClass
 {
+    public string currentImageTarget;
     public string textURL;
     public string buttonURL;
     public string imageURL;

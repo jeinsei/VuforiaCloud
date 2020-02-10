@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{99ECB7C7-63B7-1767-CAD0-73B02A832839}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Vuforia/Scripts/DefaultTrackableEventHandler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_SCRIPTS_JSON/JsonVuforiaCloudHandler.cs">
     <Files>
-      <File FileName="Assets/_SCRIPTS_JSON/JsonVuforiaCloudHandler.cs" Line="22" Column="3" />
-      <File FileName="Assets/Vuforia/Scripts/DefaultTrackableEventHandler.cs" Line="97" Column="29" />
+      <File FileName="Assets/_SCRIPTS_JSON/JsonVuforiaCloudHandler.cs" Line="77" Column="9" />
+      <File FileName="Assets/_SCRIPTS_JSON/JsonManager.cs" Line="54" Column="77" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

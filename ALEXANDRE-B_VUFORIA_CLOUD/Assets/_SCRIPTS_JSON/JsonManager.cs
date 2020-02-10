@@ -22,6 +22,7 @@ public class JsonManager : MonoBehaviour
     public AudioSource objetAudio; // Source sur laquelle est jouée l'audio via le Json
     [Header("Liens de debug pour le fichier Json")]
     [Space(20)]
+    public string currentImageTarget;
     public string textUrlJson; // stockage du string URL via le Json pour le text
     public string buttonUrlJson; // stockage du string URL via le Json pour le lien du button web
     public string imageUrlJson; // stockage du string URL via le Json pour l'image 2D
@@ -29,17 +30,32 @@ public class JsonManager : MonoBehaviour
     public string audioClipJson; // stockage du string URL via le Json pour l'audio
     public static string model3dJson; // Variable pour stocker le lien URL du model 3D via le Json
     public static string nameOfAssetBundle; // Variable public pour définir par un champ texte le nom du bundle de l'objet 3D
+    [Header("Boolean pour lire une seule fois la coroutine")]
+    [Space(20)]
+    public bool readData; // Boolean pour lire une seule fois la coroutine des données pour ne pas surchargé la mémoire
 
     #endregion
 
+    private void Start()
+    {
+        readData = false;
+    }
     //LANCEMENT DE LA FONCTION UDPATE A CHAQUE FRAME//
     private void Update()
     {
-
-        pathVuforiaMetaData = JsonVuforiaCloudHandler.metaData; // récupération du chemin Json via le flashage de l'image via le script SimpleCloudHandler
+        Debug.Log("waiting reading Data");
+        pathVuforiaMetaData = JsonVuforiaCloudHandler.mTargetMetadata; // récupération du chemin Json via le flashage de l'image via le script SimpleCloudHandler
         pathJsonData = pathVuforiaMetaData; // le chemin path devient celui détenu dans l'image du vuforia Cloud
-        StartCoroutine(LinkDataJson(pathJsonData)); // Lancement de la coroutine pour lier les data du lien du Json récupéré
-      
+
+        if(readData == true) // readData = true activé dans le script JsonVuforiaCloudHandler
+        {
+         
+         Debug.Log("reading Data");
+         StartCoroutine(LinkDataJson(pathJsonData));  // Lancement de la coroutine pour lier les data du lien du Json récupéré
+         readData = false;
+         
+        }
+
     }
 
     #region COROUTINES
@@ -130,6 +146,7 @@ public class JsonManager : MonoBehaviour
     {
         Debug.Log("Mapping Data Json c#");
         jsonDataClass JsonBridge = JsonUtility.FromJson<jsonDataClass>(_www); // Association du dictionnaire "JsonBridge" avec le Json afin de faire la passerelle entre le C# et le Json
+        currentImageTarget = (JsonBridge.currentImageTarget);
         textUrlJson = (JsonBridge.textURL);
         buttonUrlJson = (JsonBridge.buttonURL);
         imageUrlJson = (JsonBridge.imageURL);
